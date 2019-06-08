@@ -2,7 +2,6 @@ import nimPNG
 import base64
 import strformat
 import strutils
-import math
 import random
 
 type
@@ -54,10 +53,10 @@ proc dataToString*(pix: Pixels): string =
   result = newString(pix.height * pix.width * 4)
   var i = 0
   for pixel in pix.data:
-    result[i] = pixel.r.char; i+= 1
-    result[i] = pixel.g.char; i+= 1
-    result[i] = pixel.b.char; i+= 1
-    result[i] = pixel.a.char; i+= 1
+    result[i] = pixel.r.char; i += 1
+    result[i] = pixel.g.char; i += 1
+    result[i] = pixel.b.char; i += 1
+    result[i] = pixel.a.char; i += 1
 
 
 proc simplePNG*(filepath: string, pixels: Pixels) =
@@ -75,24 +74,3 @@ iterator mitems*(pixels: var Pixels): var Pixel {.inline.} =
   while i < pixels.data.len:
     yield pixels.data[i]
     inc(i)
-
-
-when isMainModule:
-  var p = initPixels(600, 600)
-  #p.fill(255, 0, 128, 255)
-  var n = 0
-  for pixel in p.mitems:
-    n += 1
-    let n1 = sin(n.float / 100.0)
-    let r = (n1*100).uint8
-    let n2 = cos(n.float / 50.0)
-    let g = 0'u8
-    let b = (n2*50).uint8
-    let a = 255'u8
-    pixel.setColor(r, g, b, a)
-
-
-
-  #for i, item in p.datatoString():
-    #echo "i: {i:>4}, item: {item.uint8:>3}".fmt
-  simplePNG("/tmp/what.png", p)
