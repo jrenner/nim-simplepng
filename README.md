@@ -21,10 +21,9 @@ for pixel in p.mitems:
     # set RGBA values for this pixel
     pixel.setColor(r, g, b, a)
 
+#change the color of arbitrary pixel to green
+p[300,300].setColor(0, 255, 0, 255)
 
-
-#for i, item in p.datatoString():
-#echo "i: {i:>4}, item: {item.uint8:>3}".fmt
 # save file to disk
 simplePNG("/tmp/what.png", p)
 ```
