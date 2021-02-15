@@ -1,9 +1,17 @@
 # nim-simplepng
 Wrapper around nimpng for simple writing of PNG files
 
-# example
+# Installation
+```
+nimble install simplepng
+```
+
+# Example
 
 ```nim
+import simplepng
+import math
+
 # create 600 width, 600 height image
 var p = initPixels(600, 600)
 # set it to all white, full alpha
@@ -21,12 +29,6 @@ for pixel in p.mitems:
     # set RGBA values for this pixel
     pixel.setColor(r, g, b, a)
 
-
-
-#for i, item in p.datatoString():
-#echo "i: {i:>4}, item: {item.uint8:>3}".fmt
 # save file to disk
-simplePNG("/tmp/what.png", p)
+simplePNG("example.png", p)
 ```
-
-
